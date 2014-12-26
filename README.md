@@ -1,4 +1,4 @@
-winchanger
+UIWindows Changer
 ==========
+Small AS3 OneClass Framework to work with UI Windows in flash application
 
-AS3 simple-n-short framework to work with ui windows in your app
