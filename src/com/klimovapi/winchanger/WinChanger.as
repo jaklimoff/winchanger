@@ -58,11 +58,17 @@ public class WinChanger {
      */
     public static function show(winKey:String, ...rest):IWindow {
         var window:IWindow = create(winKey);
-        window.onShow.apply(null, rest);
-        if(_useHistory){
-            _windowsHistory.push(window);
-        }
+
         _transition(window, _currentWindow);
+
+        if(_useHistory){
+            _currentWindow &&  _currentWindow.onPause();
+            _windowsHistory.push(window);
+        } else {
+            _currentWindow && _currentWindow.onDestroy();
+        }
+
+        window.onShow.apply(null, rest);
         _currentWindow = window;
         return window;
     }
@@ -108,7 +114,7 @@ public class WinChanger {
 
     public static function back():IWindow {
         var winInd:Number = _windowsHistory.indexOf(_currentWindow);
-        if(winInd < _windowsHistory.length && winInd != 0){
+        if(winInd != 0){
             var oldWindow:IWindow = _currentWindow;
             _currentWindow = _windowsHistory[winInd - 1];
             oldWindow.onPause();
@@ -120,6 +126,15 @@ public class WinChanger {
     }
 
     public static function forward():IWindow {
+        var winInd:Number = _windowsHistory.indexOf(_currentWindow);
+        if(winInd < _windowsHistory.length - 1){
+            var oldWindow:IWindow = _currentWindow;
+            _currentWindow = _windowsHistory[winInd + 1];
+            oldWindow.onPause();
+            _currentWindow.onResume();
+            _transition(_currentWindow, oldWindow);
+            return _currentWindow;
+        }
         return null;
     }
 

@@ -17,7 +17,11 @@ public class Main extends Sprite {
         WinChanger.show("test", 2);
         WinChanger.show("test", 3);
 
+        trace("<== WinChanger BACK");
         WinChanger.back();
+        trace("<== WinChanger BACK");
+        WinChanger.back();
+        trace("==> WinChanger NEXT");
         WinChanger.forward();
 
     }
