@@ -60,7 +60,6 @@ public class WinChanger {
         var window:IWindow = create(winKey);
 
         _transition(window, _currentWindow);
-
         if(_useHistory){
             _currentWindow &&  _currentWindow.onPause();
             _windowsHistory.push(window);
@@ -114,7 +113,7 @@ public class WinChanger {
 
     public static function back():IWindow {
         var winInd:Number = _windowsHistory.indexOf(_currentWindow);
-        if(winInd != 0){
+        if(winInd != 0 && _useHistory){
             var oldWindow:IWindow = _currentWindow;
             _currentWindow = _windowsHistory[winInd - 1];
             oldWindow.onPause();
@@ -127,7 +126,7 @@ public class WinChanger {
 
     public static function forward():IWindow {
         var winInd:Number = _windowsHistory.indexOf(_currentWindow);
-        if(winInd < _windowsHistory.length - 1){
+        if(winInd < _windowsHistory.length - 1 && _useHistory){
             var oldWindow:IWindow = _currentWindow;
             _currentWindow = _windowsHistory[winInd + 1];
             oldWindow.onPause();
@@ -138,10 +137,17 @@ public class WinChanger {
         return null;
     }
 
+    /**
+     * Dow you want to save all windows history?
+     * @param value
+     */
     public static function set useHistory(value:Boolean):void {
         _useHistory = value;
     }
 
+    /**
+     * This is current active window on stage
+     */
     public static function get currentWindow():IWindow {
         return _currentWindow;
     }

@@ -15,7 +15,7 @@ public class TestWindow implements IWindow{
     }
 
     public function onCreate():void {
-        trace("onCreate()");
+        trace("TestWindow onCreate()");
         _skin = new Sprite();
         _skin.graphics.beginFill(0x666666, 1);
         _skin.graphics.drawRect(0,0, 400, 800);
@@ -24,22 +24,22 @@ public class TestWindow implements IWindow{
 
     public function onShow():void {
         _args = arguments;
-        trace("Window[" + _args + "] onShow()");
+        trace("TestWindow[" + _args + "] onShow()");
         var textField:TextField = new TextField();
         textField.text = arguments[0];
         _skin.addChild(textField);
     }
 
     public function onResume():void {
-        trace("Window[" + _args + "] onResume()");
+        trace("TestWindow[" + _args + "] onResume()");
     }
 
     public function onPause():void {
-        trace("Window[" + _args + "] onPause()");
+        trace("TestWindow[" + _args + "] onPause()");
     }
 
     public function onDestroy():void {
-        trace("Window[" + _args + "] onDestroy()");
+        trace("TestWindow[" + _args + "] onDestroy()");
     }
 
     public function getSkin():DisplayObjectContainer {

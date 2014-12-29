@@ -9,7 +9,7 @@ import flash.text.TextField;
 public class Main extends Sprite {
     public function Main() {
 
-
+        WinChanger.useHistory = false;
         WinChanger.startOn(this);
         WinChanger.register("test", TestWindow);
 
@@ -19,10 +19,10 @@ public class Main extends Sprite {
 
         trace("<== WinChanger BACK");
         WinChanger.back();
-        trace("<== WinChanger BACK");
-        WinChanger.back();
-        trace("==> WinChanger NEXT");
-        WinChanger.forward();
+//        trace("<== WinChanger BACK");
+//        WinChanger.back();
+//        trace("==> WinChanger NEXT");
+//        WinChanger.forward();
 
     }
 }
