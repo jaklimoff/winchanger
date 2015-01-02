@@ -29,6 +29,7 @@ winChanger.show("test", 'test', 1, [4,5]);
 
 
 To make code more readable and window usage more clearly all Windows have their own lifecycle:
+So these functions will be called in exact phases.
 ```php
 /** When window created */
 function onCreate():void;
